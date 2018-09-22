@@ -1,5 +1,6 @@
 // break-down:
-// 1) Have drop-down menu or search box. Users can either type in States to find fires...or, the drop-down menu will have the States listed.
+// 1) Have a drop-down menu listing State.
+// 2) F
 // 2) Drop a "pin" on location of fire - use "fire icon".
 // 3) Toggle option / switch views between satellite and street view.
 // 4) Have zoom-in and zoom-out icons to see details of map.
@@ -13,7 +14,7 @@
 
 
 
-var mymap = L.map('mapid').setView([37.763418, -122.492105], 10);
+var mymap = L.map('mapid');
 
 var marker = L.marker([37.763418, -122.492105]).addTo(mymap);
 
@@ -24,7 +25,6 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
     id: 'mapbox.streets',
     accessToken: 'pk.eyJ1IjoicGxhbmV0czA5IiwiYSI6ImNqbGQ2dHN2bDA4NjUza21pZXM5ZjgxNW8ifQ.dDpaQ6n-iZnfNf-lVtWmTw'
 }).addTo(mymap);
-
 
 
 var popup = L.popup();
@@ -39,14 +39,27 @@ mymap.on('click', onMapClick);
 
 
 
+
+// Vue.component('mydropdown', {
+//     template: '<h1>test</h1>'
+// })
+function resetStateLocation(lat, long, zoom) {
+    mymap.setView(lat, long, zoom);
+}
+
 new Vue({
     el: '#dropdown-group',
     data: {
-        message: 'Testing Site!'
+        message: 'Testing Site!',
+        lat: 0,
+        long: 0,
+        zoom: 0
     },
-    // Having issues understanding how to get v-bind to work:
-    // mapStyles: {
-    //     width: '900px';
-    //     height: '900px';
-    // }
+    methods: {
+        resetStateLocation: resetStateLocation
+    },
+    beforeMount: function() {
+        resetStateLocation(40, 40, 4)
+    }
 });
+

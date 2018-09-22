@@ -26,20 +26,27 @@
  
 <body>
 
+<!-- <mydropdown></mydropdown> -->
+
 <!-- STATE DROP-DOWN MENU -->
 <div id="dropdown-group">
 	<h1>{{ message }}</h1>
 
 		<select class="form-control" id="myStateDropDown">
 			<option value="State" class="userDropDown">Select State</option>
-			<option value="State" class="StateInfo">ARIZONA</option>
-<!-- Would I need to list out all the states in Drop-Down menu
-or is there a way to get feed and get it to populate automatically? -->
+
+			<option v-for="state in USStates"
+				v-bind:lat="state.lat"
+				v-bind:long="state.long"
+				v-on:click="resetStateLocation"
+				>{{ state.name }}</option>
+
 		</select>
 </div>
 
 
-<div id='mapid' v-bind:style="mapStyles">	
+<div id='mapid'>
+
 	
 
 </div>
@@ -67,6 +74,7 @@ crossorigin=""></script>
 
 
 <!-- JavaScript Link (file link) -->
+<script type="text/javascript" src="js/usstates.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 
 </body>
