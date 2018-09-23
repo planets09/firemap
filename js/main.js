@@ -1,6 +1,7 @@
 // break-down:
 // 1) Have a drop-down menu listing State.
-// 2) F
+// 2) Once user selects State from drop-down menu, the map
+// should then center on that particular State and populate with fire info.
 // 2) Drop a "pin" on location of fire - use "fire icon".
 // 3) Toggle option / switch views between satellite and street view.
 // 4) Have zoom-in and zoom-out icons to see details of map.
@@ -51,15 +52,15 @@ new Vue({
     el: '#dropdown-group',
     data: {
         message: 'Testing Site!',
-        lat: 0,
-        long: 0,
-        zoom: 0
+        lat: 37.0902,
+        long: 95.7129,
+        zoom: 4
     },
     methods: {
         resetStateLocation: resetStateLocation
     },
     beforeMount: function() {
-        resetStateLocation(40, 40, 4)
+        resetStateLocation(40.0, 40.0, 5)
     }
 });
 
